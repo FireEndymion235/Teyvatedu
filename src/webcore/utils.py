@@ -78,3 +78,11 @@ def hex_to_port(hex_port):
     except ValueError:
         return "Invalid hexadecimal port number"
 
+def convert_datetime(datetime_str):
+    # 解析日期时间字符串
+    dt = datetime.fromisoformat(datetime_str)
+    
+    # 格式化日期为普通格式
+    formatted_date = dt.strftime("%Y-%m-%d")
+    
+    return formatted_date

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>提教版-公告</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{url_for('static', path='assets/css/main.css')}}" />
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', path='favicon.ico') }}">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>出版物</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1 style="font-family: 'GSFont';">暂无公告</h1>
+									</header>
+									<span class="image main"><img src="static/images/pic11.jpg" alt="" /></span>
+
+									<p>敬请期待</p>
+									<hr class="major" />
+                                    <div class="content">
+
+                                       {{ notifications | safe}}
+                                        
+                                    </div>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Search -->
+								{{ searchbar | safe  }}
+							<!-- Menu -->
+								{{ nav | safe  }}
+							<!-- Section -->
+								{{  hotpubs | safe }}
+							<!-- Section -->
+								{{ pageinfo | safe  }}
+							<!-- Footer -->
+								{{  footer | safe  }}}
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+		{{ basescripts | safe}}
+
+	</body>
+</html>
