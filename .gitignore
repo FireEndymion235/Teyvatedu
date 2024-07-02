@@ -1,0 +1,41 @@
+# pycache
+/__pycache__
+__pycache__/
+/.idea
+*.pyc
+
+# vscode
+# .vscode/
+
+/logs
+
+/venv
+
+*.logs
+*.log
+
+.env
+
+# vistracer file, terribly large
+result.json
+
+*.py[cod]
+*$py.class
+
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Draw IO temp files and backup files
+*.bkp  
+*.dtmp
+
+# pytest cache
+__pycache__/
+.pytest_cache/
+# save json file but ignore userspace for storage
+*.userspace.json
+!*.json
+
+*.userspace.sqlite
+!*.sqlite

@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>提瓦特教育出版社</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', path='favicon.ico') }}">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header" style="text-align: center;">
+								<img src="static/images/logo.png" alt="" style="width: 100%; max-width:400px; height: auto;" />
+								<!--
+								<a href="index.html" class="logo" style="display: block; margin-top: 20px;"><strong>提瓦特教育出版社</strong></a>
+								-->				
+							</header>
+
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h1 style="font-family: 'GSFont';">提瓦特教育出版社<br />
+											官方网站</h1>
+											<p>提瓦特教育出版社出品提瓦特世界指南精品书籍</p>
+										</header>
+										<p>如有任何问题，请联系</p>
+										<ul class="actions">
+											<li><a href="#" class="button big">Learn More</a></li>
+										</ul>
+									</div>
+									<span class="image object">
+										<img src="static/images/pic10.jpg" alt="" />
+									</span>
+								</section>
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2 style="font-family: 'GSFont';">出版图书</h2>
+									</header>
+									<div class="posts">
+										<!-- article start -->
+										<article>
+											<a href="#" class="image"><img src="static/images/pic01.jpg" alt="" /></a>
+											<h3 style="font-family: 'GSFont';">基本元素论</h3>
+											<p>基本元素论是一本讲述七元素的基本入门书籍</p>
+											<ul class="actions">
+												<li><a href="#" class="button" style="font-family: 'GSFont';">查看详情</a></li>
+											</ul>
+										</article>
+										<!-- article end -->
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								{{ searchbar | safe  }}
+							<!-- Menu -->
+								{{  nav | safe  }}
+							<!-- Section -->
+								{{  hotpubs | safe }}
+							<!-- Section -->
+								{{ pageinfo | safe}}
+							<!-- Footer -->
+								{{ footer | safe}}
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+		{{ basescripts | safe}}
+	</body>
+</html>
