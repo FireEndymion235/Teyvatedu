@@ -64,6 +64,8 @@ async def app_lifespan(app: FastAPI):
     log.info("SQLite database initialized")
     state:GlobalState = get_global_state()
     state.runtime.set("webres",construct_webres())
+    state.runtime.set("JWT_KEY",config.JWT_SECRET_KEY)
+    state.runtime.set("JWT_DECRYPT",config.JWT_ALGORITHM)
     yield
     log.info(f"APP shutting down: {app}")
     await Tortoise.close_connections()

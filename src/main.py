@@ -7,15 +7,14 @@ from webcore.endpoints import all_router
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from conf import config
+
 app = FastAPI(lifespan=app_lifespan)
 
-# 挂载静态文件目录
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 async def read_root():
     return RedirectResponse("/index.html")
-
 
 
 app.add_middleware(

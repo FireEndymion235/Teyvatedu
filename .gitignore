@@ -40,3 +40,5 @@ __pycache__/
 *.userspace.sqlite
 !*.sqlite
 *.db
+
+*.key

@@ -10,6 +10,9 @@ import struct
 import aiohttp
 import jwt
 from os import path,walk
+import uuid
+async def random_string()->str:
+    return uuid.uuid4().hex
 
 
 async def async_get(url: str):

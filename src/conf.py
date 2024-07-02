@@ -30,7 +30,7 @@ class AppConfig(BaseSettings):
     # Basic info for app's OpenAPI schema
     APP_NAME:str = Field(default="Backend", env="APP_NAME",description="提瓦特教育出版社API")
     APP_VERSION:str = Field(default="0.0.1", env="APP_VERSION",description="0.1.0")
-    APP_TITLE:str = Field(default="RPICS", env="APP_TITLE",description="提瓦特教育出版社API")
+    APP_TITLE:str = Field(default="TEP", env="APP_TITLE",description="提瓦特教育出版社API")
     APP_DESCRIPTION:str = Field(default="The backend for RPICS", env="APP_DESCRIPTION",description="提瓦特教育出版社API后台管理页面")
     APP_DEBUG:bool = Field(default=True, env="APP_DEBUG",description="APP调试模式")
 
@@ -51,7 +51,5 @@ class AppConfig(BaseSettings):
     SQLITE_FILE: str = "tep.db"
     SQLITE_URL: str = path.join(*SQLITE_DIR,SQLITE_FILE)
     SQLITE_MODELS: list = get_models()
-
-    
 
 config = AppConfig()

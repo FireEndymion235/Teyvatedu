@@ -16,20 +16,6 @@ async def render_notifications():
     </div>
     """
     return all_text
-"""
-<div class="posts">
-										<!-- article start -->
-										<article>
-											<a href="#" class="image"><img src="static/images/pic01.jpg" alt="" /></a>
-											<h3 style="font-family: 'GSFont';">基本元素论</h3>
-											<p>基本元素论是一本讲述七元素的基本入门书籍</p>
-											<ul class="actions">
-												<li><a href="#" class="button" style="font-family: 'GSFont';">查看详情</a></li>
-											</ul>
-										</article>
-										<!-- article end -->
-									</div>
-"""
 async def render_books():
     bookes = await Book.Book.all()
     all_text = ""
