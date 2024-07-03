@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>提教版-联系</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{url_for('static', path='assets/css/main.css')}}" />
+		<link rel="icon" type="image/x-icon" href="{{ url_for('static', path='favicon.ico') }}">
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<!-- Header -->
+								<header id="header">
+									<a href="contact.html" class="logo"><strong>联系我们</strong></a>
+								</header>
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1 style="font-family: 'GSFont';">联系方式与招募</h1>
+									</header>
+									<span class="image main"><img src="static/images/pic11.jpg" alt="" /></span>
+                                    <h2>联系方式</h2>
+                                    <ul class="alt">
+                                        <li>QQ交流群:151366861</li>
+                                        <li>Bilibili:提瓦特人民教育出版社</li>
+                                    </ul>
+                                    <h2>招募计划</h2>
+									<p>运营部门招募</p>
+                                    <p>技术部门招募</p>
+                                    <p>编辑部门招募</p>
+									<hr class="major" />
+								</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Search -->
+								{{ searchbar | safe  }}
+							<!-- Menu -->
+								{{ nav | safe  }}
+							<!-- Section -->
+								{{  hotpubs | safe }}
+							<!-- Section -->
+								{{ pageinfo | safe  }}
+							<!-- Footer -->
+								{{  footer | safe  }}
+						</div>
+					</div>
+			</div>
+		<!-- Scripts -->
+		{{ basescripts | safe}}
+
+	</body>
+</html>

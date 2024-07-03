@@ -1,15 +1,12 @@
 
 
-from tortoise.models import Model
-from pydantic import BaseModel
 from conf import config
 import pytz
-from datetime import datetime,timezone
+from datetime import datetime
 import socket
 import struct
 import aiohttp
 import jwt
-from os import path,walk
 import uuid
 async def random_string()->str:
     return uuid.uuid4().hex
