@@ -22,6 +22,11 @@ Docker build:
     docker build -t teyvatedu .
 ```
 
+prechecks:
+```bash
+mkdir -p /usr/tep/static /usr/tep/templates /usr/tep/sqlite3
+```
+
 Docker run:
 
 ```bash
@@ -30,6 +35,9 @@ Docker run:
     -e APP_NAME=TEPBackendAPI \
     -e JWT_SECRET_KEY=randomkey \
     -e JWT_ALGORITHM=HS256 \
+    -v /usr/tep/static:/app/static \
+    -v /usr/tep/templates:/app/templates \
+    -v /usr/tep/sqlite3:/app/sqlite3 \
     my_fastapi_app
 ```
 
