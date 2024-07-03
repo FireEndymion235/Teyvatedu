@@ -1,11 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,Security
 from fastapi import UploadFile
 from fastapi.responses import FileResponse
 from webcore.utils import random_string
 from fastapi import HTTPException
+from webcore.authorize import check_permissions
 from aiofiles import open
 from loguru import logger
-file_router = APIRouter(prefix="/api/v1",tags=["File"])
+file_router = APIRouter(prefix="/api/v1",tags=["File"],dependencies=[Security(check_permissions,scopes=["admin"])])
 allowed_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 @file_router.post("/image/upload")
 async def upload_file(file: UploadFile):

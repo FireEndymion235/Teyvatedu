@@ -1,8 +1,10 @@
-from fastapi import APIRouter
+from fastapi import APIRouter,Security
+
 from models.Notification import Notification,NotificationSchema
 from models.Book import Book,BookSchema
+from webcore.authorize import check_permissions
 import os
-backend_router = APIRouter(prefix="/api/v1",tags=["Ressources"])
+backend_router = APIRouter(prefix="/api/v1",tags=["Ressources"],dependencies=[Security(check_permissions,scopes=["admin"])])
 async def delete_static_image(img:str):
     if img:
         if os.path.exists(f"static/images/{img}"):
