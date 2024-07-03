@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 from models.Notification import Notification,NotificationSchema
 from models.Book import Book,BookSchema
+import os
 backend_router = APIRouter(prefix="/api/v1")
 async def delete_static_image(img:str):
-    import os
     if img:
         if os.path.exists(f"static/images/{img}"):
             os.remove(f"static/images/{img}")
@@ -50,3 +50,19 @@ async def delete_book(id:int):
     await book.delete()
     return {"status":"ok"}
 
+
+@backend_router.get("/resources")
+async def get_all_resources():
+    # get all files in static/images and static/pdfs
+    images = os.listdir("static/images")
+    pdfs = os.listdir("static/pdfs")
+    return {
+        "images": images,
+        "pdfs": pdfs
+    }
+
+@backend_router.delete("/resouce/{path}/{filename}")
+async def delete_resource(path:str,filename:str):
+    if os.path.exists(f"static/{path}/{filename}"):
+        os.remove(f"static/{path}/{filename}")
+    return {"status":"ok"}

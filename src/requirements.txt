@@ -1,4 +1,9 @@
 fastapi
+aiofiles
+aiohttp
+aiomysql
+aioredis
+python-dotenv
 pydantic-settings
 jinja2
 pydantic
@@ -6,4 +11,3 @@ python-multipart
 pyjwt
 loguru
 tortoise-orm
-dotenv

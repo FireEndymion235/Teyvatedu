@@ -32,7 +32,7 @@ class AppConfig(BaseSettings):
     APP_VERSION:str = Field(default="0.0.1", env="APP_VERSION",description="0.1.0")
     APP_TITLE:str = Field(default="TEP", env="APP_TITLE",description="提瓦特教育出版社API")
     APP_DESCRIPTION:str = Field(default="The backend for RPICS", env="APP_DESCRIPTION",description="提瓦特教育出版社API后台管理页面")
-    APP_DEBUG:bool = Field(default=True, env="APP_DEBUG",description="APP调试模式")
+    APP_DEBUG:bool = Field(default=False, env="APP_DEBUG",description="APP调试模式")
 
     # -------------------- JWT --------------------
     # JWT (Json Web Token) 

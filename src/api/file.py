@@ -1,11 +1,10 @@
 from fastapi import APIRouter
-from fastapi import File, UploadFile
+from fastapi import UploadFile
 from fastapi.responses import FileResponse
 from webcore.utils import random_string
 from fastapi import HTTPException
 from aiofiles import open
 from loguru import logger
-from base64 import b64encode, b64decode
 file_router = APIRouter(prefix="/api/v1")
 allowed_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 @file_router.post("/image/upload")

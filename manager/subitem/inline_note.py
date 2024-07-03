@@ -11,18 +11,6 @@ from datetime import datetime
 def format_datetime(dt):
     return dt.strftime("%Y-%m-%dT%H:%M:%S.%fZ")[:-3]
 
-"""
-{
-  "title": "string",
-  "desc": "string",
-  "content": "string",
-  "img": "string",
-  "link": "string",
-  "datetime": "2024-07-02T15:05:15.761Z",
-  "publish": "出版社官方",
-  "expire_time": "2024-07-02T15:05:15.761Z"
-}
-"""
 class NoteSchema(BaseModel):
     title:str
     desc:str
