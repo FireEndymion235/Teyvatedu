@@ -25,20 +25,24 @@ Docker build:
 prechecks:
 ```bash
 mkdir -p /usr/tep/static /usr/tep/templates /usr/tep/sqlite3
+cp -r ./static/* /usr/tep/static
+cp -r ./templates/* /usr/tep/templates
+cp -r ./sqlite3/* /usr/tep/sqlite3
 ```
 
 Docker run:
 
 ```bash
     docker run -d -p 80:80 \
-    --name teyvatedu-app \
+    --name teyvatedu \
     -e APP_NAME=TEPBackendAPI \
-    -e JWT_SECRET_KEY=randomkey \
+    -e JWT_SECRET_KEY=IJINVIOFJ010APU0R5T12QA7OOHBXC6N5M11AAP7ZFZNTKU2YU5ZSXMWC4F7U3FT \
     -e JWT_ALGORITHM=HS256 \
+    -e ES=CC283 \
     -v /usr/tep/static:/app/static \
     -v /usr/tep/templates:/app/templates \
     -v /usr/tep/sqlite3:/app/sqlite3 \
-    my_fastapi_app
+    teyvatedu
 ```
 
 Generate JWT_SECRET_KEY: 
