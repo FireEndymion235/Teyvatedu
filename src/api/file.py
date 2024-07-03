@@ -5,7 +5,7 @@ from webcore.utils import random_string
 from fastapi import HTTPException
 from aiofiles import open
 from loguru import logger
-file_router = APIRouter(prefix="/api/v1")
+file_router = APIRouter(prefix="/api/v1",tags=["File"])
 allowed_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 @file_router.post("/image/upload")
 async def upload_file(file: UploadFile):

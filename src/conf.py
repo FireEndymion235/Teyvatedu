@@ -51,5 +51,6 @@ class AppConfig(BaseSettings):
     SQLITE_FILE: str = "tep.db"
     SQLITE_URL: str = path.join(*SQLITE_DIR,SQLITE_FILE)
     SQLITE_MODELS: list = get_models()
-
+    # -------------------- ENV Shows --------------------
+    ES: str = Field(default="HELLO",env="ES",description="JWT过期时间")
 config = AppConfig()

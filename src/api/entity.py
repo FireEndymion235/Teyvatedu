@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from models.Notification import Notification,NotificationSchema
 from models.Book import Book,BookSchema
 import os
-backend_router = APIRouter(prefix="/api/v1")
+backend_router = APIRouter(prefix="/api/v1",tags=["Ressources"])
 async def delete_static_image(img:str):
     if img:
         if os.path.exists(f"static/images/{img}"):

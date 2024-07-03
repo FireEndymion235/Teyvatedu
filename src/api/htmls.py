@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from models.Book import Book
 templates = Jinja2Templates(directory="templates")
-html_router = APIRouter()
+html_router = APIRouter(tags=["Htmls"])
 
 @html_router.get("/index.html", response_class=HTMLResponse)
 async def read_index(request: Request,state:GlobalState=Depends(get_global_state)):

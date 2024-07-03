@@ -12,6 +12,33 @@ This repo is the official website repo, dedicated to building a standardized pla
 5. Contact us/About us
 6. Login page
 
+
+
+## Install
+
+Docker build:
+
+```bash
+    docker build -t teyvatedu .
+```
+
+Docker run:
+
+```bash
+    docker run -d -p 80:80 \
+    --name teyvatedu-app \
+    -e APP_NAME=TEPBackendAPI \
+    -e JWT_SECRET_KEY=randomkey \
+    -e JWT_ALGORITHM=HS256 \
+    my_fastapi_app
+```
+
+Generate JWT_SECRET_KEY: 
+```bash
+tr -dc 'A-Z0-9' < /dev/urandom | head -c 64
+```
+replace JWT_SECRET_KEY with the generated key.
+
 ## Credits
 
 This project includes code from [Editorial by HTML5 UP](html5up.net) by [@ajlkn], used under [CC BY 3.0](html5up.net/license). Changes were made to the original code.
