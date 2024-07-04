@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import Header
 from conf import config
-
+from webcore.logcontroller import log
 # STMP Server
 smtp_server = config.STMP_SERVER
 # STMP User
@@ -32,6 +32,7 @@ async def send_email(send_to_addr:str,
     # content
     msg.attach(MIMEText(contest_msg, 'html', 'utf-8'))
     # send email
+    log.debug(f'Sending email to {send_to_addr}...')
     await server.sendmail(from_addr, send_to_addr, msg.as_string())
     # close connection
     await server.quit()
@@ -59,5 +60,6 @@ async def send_email_log(send_to_addr:str,
     image_file.add_header('Content-Type', 'application/octet-stream')
     image_file.add_header('Content-Disposition', 'attachment', filename=('utf-8', '', image_file_name))
     msg.attach(image_file)
+    log.debug(f'Sending email to {send_to_addr}...')
     await server.sendmail(from_addr, send_to_addr, msg.as_string())
     await server.quit()

@@ -7,6 +7,7 @@ from starlette.types import ASGIApp, Scope, Receive, Send, Message
 from starlette.datastructures import Headers
 from .logcontroller import log as logger
 from .proxy import request_var
+from models import Access
 class BaseMiddleware:
     def __init__(
             self,
@@ -36,6 +37,7 @@ async def bind_context_request(request: Request, call_next):
     """
     token = request_var.set(request)
     logger.debug(f"[REQ] {request.client.host}/{request.client.port} [ACCESSED] {request.url}" )
+    await Access.Access.create(endpoint=request.url, ip=request.client.host, user=str(request.headers.get("user-agent")))
     try:
         response = await call_next(request)
         return response

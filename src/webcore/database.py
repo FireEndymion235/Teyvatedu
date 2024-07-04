@@ -1,13 +1,11 @@
-\
-from fastapi import FastAPI
-from tortoise.contrib.fastapi import register_tortoise
+
 import re
 from conf import config,get_models
 from pymysql import connect
 from .logcontroller import log
 from typing import Dict
 from tortoise import Tortoise
-from os import path, makedirs, walk
+from os import path, makedirs
 def execute_sql_query(sql_query: str):
     with connect(
         host=config.MYSQL_HOST,
@@ -102,16 +100,6 @@ async def register_mysql():
     )
     if test_result["generate_schemas"]:
         await Tortoise.generate_schemas()
-    """
-        register_tortoise(
-        app,
-        config=config_dict,
-    #    modules={"models": models},
-        generate_schemas=test_result["generate_schemas"],
-        add_exception_handlers=config.APP_DEBUG,
-    )
-    """
-
     
     log.info("[MySQL CNN] MySQL registered")
 

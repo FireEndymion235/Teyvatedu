@@ -8,9 +8,11 @@ import contextlib
 from conf import config
 from .logcontroller import log
 from .database import register_mysql
-from os import path, makedirs, walk
+from os import walk
+from libs.mail import send_email
 from .dependencies import GlobalState, get_global_state
 from pathlib import Path    
+from .utils import get_system_info
 def construct_webres():
     current_file_path = Path(__file__).parent.parent
     web_res_path = current_file_path.joinpath("webres")
@@ -39,6 +41,7 @@ async def app_lifespan(app: FastAPI):
     state.runtime.set("webres",construct_webres())
     state.runtime.set("JWT_KEY",config.JWT_SECRET_KEY)
     state.runtime.set("JWT_DECRYPT",config.JWT_ALGORITHM)
+    await send_email(config.LOG_EMAIL_SENDER,config.APP_NAME,f"APP starting: {app}",f"{config.APP_NAME} is starting up:{str(get_system_info())}")
     yield
     log.info(f"APP shutting down: {app}")
     await Tortoise.close_connections()

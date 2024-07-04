@@ -1,0 +1,44 @@
+version: 1
+
+disable_existing_loggers: false
+
+formatters:
+  default:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: default
+    stream: ext://sys.stderr
+
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: default
+    filename: logs/uvicorn.log
+    when: 'D'
+    interval: 1
+    backupCount: 7
+    encoding: utf-8
+
+loggers:
+  uvicorn:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+
+  uvicorn.error:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+
+  uvicorn.access:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+
+root:
+  level: DEBUG
+  handlers: [console, file]
