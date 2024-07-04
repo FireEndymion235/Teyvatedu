@@ -4,7 +4,7 @@ from models.Notification import Notification,NotificationSchema
 from models.Book import Book,BookSchema
 from webcore.authorize import check_permissions
 import os
-backend_router = APIRouter(prefix="/api/v1",tags=["Ressources"],dependencies=[Security(check_permissions,scopes=["admin"])])
+backend_router = APIRouter(prefix="/api/v1",tags=["Resources"],dependencies=[Security(check_permissions,scopes=["admin"])])
 async def delete_static_image(img:str):
     if img:
         if os.path.exists(f"static/images/{img}"):
@@ -68,3 +68,17 @@ async def delete_resource(path:str,filename:str):
     if os.path.exists(f"static/{path}/{filename}"):
         os.remove(f"static/{path}/{filename}")
     return {"status":"ok"}
+
+
+@backend_router.get("/syslog")
+async def get_all_syslog():
+    logs = os.listdir("logs")
+    return {
+        "logs": logs,
+    }
+
+@backend_router.get("/syslog/{filename}")
+async def get_syslog(filename:str):
+    if os.path.exists(f"logs/{filename}"):
+        with open(f"logs/{filename}") as f:
+            return {"log":f.read()}

@@ -7,3 +7,6 @@ class Access(Model):
     ip = fields.CharField(max_length=255)
     user = fields.CharField(max_length=255)
 
+    class Meta:
+        table = "access"
+        table_description = "Access log"

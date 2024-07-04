@@ -7,6 +7,7 @@ from tortoise import Tortoise
 import contextlib
 from conf import config
 from .logcontroller import log
+from .database import register_mysql
 from os import path, makedirs, walk
 from .dependencies import GlobalState, get_global_state
 from pathlib import Path    
@@ -32,36 +33,8 @@ def construct_webres():
 @contextlib.asynccontextmanager
 async def app_lifespan(app: FastAPI):
 
-    folder = path.join(*config.SQLITE_DIR)
-    # [LIFESPAN 01] 初始化SQLite数据库
-    # if folder is not exist, create it
-    if not path.exists(folder):
-        log.info(f"SQLite database folder not found, creating folder {folder}")
-        makedirs(folder)
+    await register_mysql()
 
-    config_dict = {
-        "connections": {
-            "default": {
-                "engine": "tortoise.backends.sqlite",
-                "credentials": {
-                    "file_path": config.SQLITE_URL
-                }
-            }
-        },
-        "apps": {
-            "models": {
-                "models": config.SQLITE_MODELS,
-                "default_connection": "default"
-            }
-        }
-    }
-    
-    await Tortoise.init(
-        config=config_dict
-    )
-    await Tortoise.generate_schemas()
-    log.info(f"generating models:{config.SQLITE_MODELS}")
-    log.info("SQLite database initialized")
     state:GlobalState = get_global_state()
     state.runtime.set("webres",construct_webres())
     state.runtime.set("JWT_KEY",config.JWT_SECRET_KEY)

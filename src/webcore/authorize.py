@@ -6,7 +6,7 @@ from pydantic import ValidationError
 
 from fastapi import HTTPException, status
 from typing import Optional, Any
-
+from conf import config
 import jwt
 from webcore.logcontroller import log
 from webcore.dependencies import get_global_state
@@ -21,11 +21,11 @@ def HTTP_E401(details: Optional[Any] = None, headers: Optional[dict[str, Any]] =
 
 def scope_contains(access_required_scope:list, user_has_scope:list) -> bool:
     """
-    检查权限是否包含
-    用于检查用户的权限是否包含所需的权限
-    :param access_required_scope: 需要的权限
-    :param user_has_scope: 用户的权限
-    :return: 是否包含
+    check if the user has the required scope
+
+    :param access_required_scope: requried scope
+    :param user_has_scope: users's scope
+    :return: result
     """
     return set(access_required_scope).issubset(set(user_has_scope))
 
@@ -36,12 +36,14 @@ async def check_permissions(
         state = Depends(get_global_state)) -> None:
     
     """
-    检查权限
-    检查权限一般和fastapi的security的Depends一起使用，用于检查用户的权限是否满足要求
-    :param req: 请求
-    :param required_scope: 需要的权限
-    :param state: 全局状态
+    check if the user has the required scope
+    
+    :param req: request
+    :param required_scope: requried scope from SecurityScopes
+    :param state: global state
     """
+    if config.APP_DEBUG:
+        return
     header = req.headers.get("Authorization")
     if not header:
         HTTP_E401("Not Authenticate, use access token please")

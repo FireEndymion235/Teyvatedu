@@ -14,6 +14,11 @@ class Notification(Model):
     publish = fields.CharField(max_length=255,default="出版社官方")
     expire_time = fields.DatetimeField(null=True)
 
+    class Meta:
+        table = "notification"
+        table_description = "notifications"
+
+        
 class NotificationSchema(BaseModel):
     title:str
     desc:Optional[str] = None

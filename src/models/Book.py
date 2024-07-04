@@ -10,7 +10,10 @@ class Book(Model):
     img = fields.CharField(max_length=255)
     link = fields.CharField(max_length=255)
     group = fields.CharField(max_length=255)
-
+    class Meta:
+        table = "book"
+        table_description = "book"
+        
 class BookSchema(BaseModel):
     title:str
     author:str

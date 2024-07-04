@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from webcore.endpoints import all_router
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
+from webcore.middlewares import BaseMiddleware, bind_context_request
 from conf import config
 
 app = FastAPI(lifespan=app_lifespan)
@@ -24,6 +25,7 @@ app.add_middleware(
     allow_methods=config.CORS_ALLOW_METHODS,
     allow_headers=config.CORS_ALLOW_HEADERS,
 )
-
+app.add_middleware(BaseMiddleware)
+app.middleware("http")(bind_context_request)
 app.include_router(all_router)
 

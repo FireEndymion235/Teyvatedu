@@ -8,6 +8,34 @@ import struct
 import aiohttp
 import jwt
 import uuid
+import psutil
+import platform
+
+def get_system_info()->dict:
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+    cpu_count = psutil.cpu_count(logical=True)
+    cpu_freq = psutil.cpu_freq()
+    cpu_usage = psutil.cpu_percent(interval=1)
+    virtual_memory = psutil.virtual_memory()
+    disk_info = psutil.disk_partitions()
+    disk_usage = psutil.disk_usage('/')
+    os_info = platform.uname()
+    boot_time = datetime.fromtimestamp(psutil.boot_time())
+    result_dict = {
+        'hostname': hostname,
+        'ip_address': ip_address,
+        'cpu_count': cpu_count,
+        'cpu_freq': cpu_freq,
+        'cpu_usage': cpu_usage,
+        'virtual_memory': virtual_memory,
+        'disk_info': disk_info,
+        'disk_usage': disk_usage,
+        'os_info': os_info,
+        'boot_time': boot_time
+    }
+    return result_dict
+
 async def random_string()->str:
     return uuid.uuid4().hex
 

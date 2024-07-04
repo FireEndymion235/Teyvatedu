@@ -8,3 +8,7 @@ class Article(Model):
     content = fields.CharField(max_length=255)
     img = fields.CharField(max_length=255)
     link = fields.CharField(max_length=255)
+
+    class Meta:
+        table = "article"
+        table_description = "articles"

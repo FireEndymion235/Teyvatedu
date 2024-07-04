@@ -32,7 +32,7 @@ class AppConfig(BaseSettings):
     APP_VERSION:str = Field(default="0.0.1", env="APP_VERSION",description="0.1.0")
     APP_TITLE:str = Field(default="TEP", env="APP_TITLE",description="提瓦特教育出版社API")
     APP_DESCRIPTION:str = Field(default="The backend for RPICS", env="APP_DESCRIPTION",description="提瓦特教育出版社API后台管理页面")
-    APP_DEBUG:bool = Field(default=False, env="APP_DEBUG",description="APP调试模式")
+    APP_DEBUG:bool = Field(default=True, env="APP_DEBUG",description="APP调试模式")
 
     # -------------------- JWT --------------------
     # JWT (Json Web Token) 
@@ -53,4 +53,21 @@ class AppConfig(BaseSettings):
     SQLITE_MODELS: list = get_models()
     # -------------------- ENV Shows --------------------
     ES: str = Field(default="HELLO",env="ES",description="JWT过期时间")
+
+    # -------------------- MYSQL --------------------
+    # MySQL config for tortoise ORM
+    MYSQL_HOST:str = Field(default="localhost", env="MYSQL_HOST",description="MySQL主机地址")
+    MYSQL_PORT:int = Field(default=3306, env="MYSQL_PORT",description="MySQL端口")
+    MYSQL_USER:str = Field(default="root", env="MYSQL_USER",description="MySQL用户名")
+    MYSQL_PASS:str = Field(default="123456", env="MYSQL_PASS",description="MySQL密码")
+    MYSQL_DB:str = Field(default="tep", env="MYSQL_DB",description="MySQL数据库名称")
+    GLOBAL_TIMEZONE: str = Field(default="Asia/Shanghai", env="GLOBAL_TIMEZONE",description="全局时区")
+    MYSQL_TEST_TABLE: str = Field(default="files",env="MYSQL_TEST_TABLE",description="JWT过期时间")
+
+    # -------------------- MAIL --------------------
+    STMP_SERVER: str = Field(default="smtp.163.com", env="STMP_SERVER",description="SMTP服务器")
+    STMP_USER: str = Field(default="<EMAIL>", env="STMP_USER",description="SMTP用户名")
+    STMP_PASS: str = Field(default="<PASSWORD>", env="STMP_PASS",description="SMTP密码")
+
+
 config = AppConfig()
