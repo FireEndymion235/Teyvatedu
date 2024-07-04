@@ -7,7 +7,7 @@ from webcore.endpoints import all_router
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from webcore.middlewares import BaseMiddleware, bind_context_request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse,JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from api.exceptions import not_found_html
@@ -42,7 +42,7 @@ async def http_exception_handler(request: Request, exc: StarletteHTTPException):
         # 判断请求路径是否以 /api/v1 开头
         if not request.url.path.startswith("/api/v1"):
             return HTMLResponse(content=not_found_html, status_code=404)
-    return await app.default_exception_handler(request, exc)
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):

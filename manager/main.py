@@ -15,11 +15,13 @@ def main():
 
     if not st.session_state.authenticated:
         login_container = st.container()
+    
         with login_container:
             st.title("TEP 用户登录")
+            hostname=st.text_input("主机名",value="http://localhost:8000/api/v1")
             passkey = st.text_input("密钥")
             if st.button("登录"):
-                login(passkey)
+                login(passkey,hostname)
     else:
         col1, col2, col3 = st.columns([1,1,1])
         with col1:

@@ -22,6 +22,6 @@ def admin_page():
     elif option == "公告管理":
         inline_note.page()
     elif option == "资源管理":
-        ...
+        inline_resource.page()
     else:
         st.write("系统状态")

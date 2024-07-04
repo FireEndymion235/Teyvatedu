@@ -38,11 +38,13 @@ def save_token(token:str):
     with open(env.TOKEN_FILE, "w") as file:
         file.write(token)
 
-def login(passkey:str):
+def login(passkey:str,hostname:str):
+    if hostname:
+        HTTP.update_baseurl(hostname)
     try:
         header = create_jwt(passkey,{"usr":"admin","uid":1,"per":["admin"]})
         HTTP.update_headers({"Authorization":"Bearer "+header})
-        result = HTTP.get("/api/v1/authencation")
+        result = HTTP.get("/authencation")
         if result.status_code == 200:
             save_token(header)
             st.session_state.authenticated = True

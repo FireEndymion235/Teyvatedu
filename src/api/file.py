@@ -6,10 +6,13 @@ from fastapi import HTTPException
 from webcore.authorize import check_permissions
 from aiofiles import open
 from loguru import logger
+from models import Files
+
 file_router = APIRouter(prefix="/api/v1",tags=["File"],dependencies=[Security(check_permissions,scopes=["admin"])])
 allowed_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 @file_router.post("/image/upload")
 async def upload_file(file: UploadFile):
+    
     logger.debug(file)
     filename = file.filename
     file_extension = '.' + filename.split('.')[-1].lower()
@@ -24,6 +27,7 @@ async def upload_file(file: UploadFile):
     async with open(f"static/images/{new_filename}", 'wb') as buffer:
         while chunk := await file.read(1024):
             await buffer.write(chunk)
+    await Files.File.create(filename=file.filename,path=f"static/images/{new_filename}",filename_hash=new_filename)
     return {"filename": new_filename}
 
 @file_router.post("/pdf/upload")
@@ -37,6 +41,7 @@ async def upload_pdf(file:UploadFile):
     async with open(f"static/pdfs/{new_filename}", 'wb') as buffer:
         while chunk := await file.read(1024):
             await buffer.write(chunk)
+    await Files.File.create(filename=file.filename,path=f"static/pdfs/{new_filename}",filename_hash=new_filename)
     return {"filename": new_filename}
 
 @file_router.get("/image/{filename}")
@@ -46,3 +51,8 @@ async def download_image(filename: str):
 @file_router.get("/pdf/{filename}")
 async def download_pdf(filename: str):
     return FileResponse(f"static/pdfs/{filename}")
+
+@file_router.get("/files")
+async def get_all_files():
+    files = await Files.File.all()
+    return files

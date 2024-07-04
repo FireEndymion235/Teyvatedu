@@ -14,6 +14,9 @@ class _HTTP:
     def __init__(self,baseurl=BASEURL):
         self.headers = {}
         self.base = baseurl
+    def update_baseurl(self,baseurl):
+        logger.info(f"Updating base url to {baseurl}")
+        self.base = baseurl
     def json_post(self,url,data):
         try:
             logger.info(f"Posting to {url} with data: {data}")
