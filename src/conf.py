@@ -67,7 +67,7 @@ class AppConfig(BaseSettings):
     STMP_SERVER: str = Field(default="smtp.163.com", env="STMP_SERVER",description="SMTP服务器")
     STMP_USER: str = Field(default="<EMAIL>", env="STMP_USER",description="SMTP用户名")
     STMP_PASS: str = Field(default="<PASSWORD>", env="STMP_PASS",description="SMTP密码")
-
+    STMP_SWITCH: bool = Field(default=True, env="STMP_SWITCH",description="SMTP开关")
     LOG_EMAIL_SENDER: str = Field(default="<EMAIL>", env="LOG_EMAIL_SENDER",description="SMTPCit")
 
 config = AppConfig()

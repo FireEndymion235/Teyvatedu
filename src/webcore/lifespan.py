@@ -41,7 +41,8 @@ async def app_lifespan(app: FastAPI):
     state.runtime.set("webres",construct_webres())
     state.runtime.set("JWT_KEY",config.JWT_SECRET_KEY)
     state.runtime.set("JWT_DECRYPT",config.JWT_ALGORITHM)
-    await send_email(config.LOG_EMAIL_SENDER,config.APP_NAME,f"APP starting: {app}",f"{config.APP_NAME} is starting up:{str(get_system_info())}")
+    if config.STMP_SWITCH:
+        await send_email(config.LOG_EMAIL_SENDER,config.APP_NAME,f"APP starting: {app}",f"{config.APP_NAME} is starting up:{str(get_system_info())}")
     yield
     log.info(f"APP shutting down: {app}")
     await Tortoise.close_connections()
