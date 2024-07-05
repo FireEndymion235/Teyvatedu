@@ -1,4 +1,5 @@
 # Contains only the minimum required items, and the rest are default values
+
 FROM python:3.9
 
 WORKDIR /app

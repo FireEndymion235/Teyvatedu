@@ -8,7 +8,7 @@ from os import path,walk
 
 def get_models() -> list:
     """
-    获取model文件夹下的文件 即需要注册到MySQL的Model
+    get model folder files which are need to reigster to MySQL-Tables
     :return:
     """
     skip_files = ['Basic.py', '__init__.py']
@@ -28,7 +28,7 @@ load_dotenv()
 class AppConfig(BaseSettings):
     # Basic info for app's OpenAPI schema
     APP_NAME:str = Field(default="Backend", env="APP_NAME",description="提瓦特教育出版社API")
-    APP_VERSION:str = Field(default="0.1.0", env="APP_VERSION",description="0.1.0")
+    APP_VERSION:str = Field(default="0.1.0", env="APP_VERSION",description="0.2.0")
     APP_TITLE:str = Field(default="TEP", env="APP_TITLE",description="提瓦特教育出版社API")
     APP_DESCRIPTION:str = Field(default="The backend for RPICS", env="APP_DESCRIPTION",description="提瓦特教育出版社API后台管理页面")
     APP_DEBUG:bool = Field(default=False, env="APP_DEBUG",description="APP调试模式")
@@ -68,6 +68,6 @@ class AppConfig(BaseSettings):
     STMP_USER: str = Field(default="<EMAIL>", env="STMP_USER",description="SMTP用户名")
     STMP_PASS: str = Field(default="<PASSWORD>", env="STMP_PASS",description="SMTP密码")
     STMP_SWITCH: bool = Field(default=True, env="STMP_SWITCH",description="SMTP开关")
-    LOG_EMAIL_SENDER: str = Field(default="<EMAIL>", env="LOG_EMAIL_SENDER",description="SMTPCit")
+    LOG_EMAIL_SENDER: str = Field(default="<EMAIL>", env="LOG_EMAIL_SENDER",description="SMTP发送人")
 
 config = AppConfig()
