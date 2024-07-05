@@ -67,7 +67,7 @@ def page():
         if uploaded_file is not None:
             file_contents = uploaded_file.read()
             st.image(file_contents)
-        if st.button("Create Book"):
+        if st.button("Create Notification"):
             r = HTTP.upload_file("/image/upload",file_contents,uploaded_file.name)
             logger.info(r.text)
             if r.status_code == 200:

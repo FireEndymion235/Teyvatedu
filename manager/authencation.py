@@ -21,12 +21,20 @@ def parse_jwt(token:str)->dict:
 def logout():
     with open(env.TOKEN_FILE, "w") as file:
         file.write("")
+    with open(env.USER_FILE, "w") as file:
+        file.write("")
     st.session_state.authenticated = False
     st.session_state.token = ''
     st.session_state.username = ''
-    st.experimental_rerun()
+    st.rerun()
 
-
+def load_user():
+    try:
+        with open(env.USER_FILE, "r") as file:
+            data =file.read().strip()
+            return data
+    except FileNotFoundError:
+        return None
 def load_token():
     try:
         with open(env.TOKEN_FILE, "r") as file:
@@ -37,7 +45,9 @@ def load_token():
 def save_token(token:str):
     with open(env.TOKEN_FILE, "w") as file:
         file.write(token)
-
+def save_user(username:str):
+    with open(env.USER_FILE, "w") as file:
+        file.write(username)
 def login(passkey:str,hostname:str):
     if hostname:
         HTTP.update_baseurl(hostname)
@@ -47,6 +57,7 @@ def login(passkey:str,hostname:str):
         result = HTTP.get("/authencation")
         if result.status_code == 200:
             save_token(header)
+            save_user(hostname)
             st.session_state.authenticated = True
             st.session_state.token = header
             st.rerun()
@@ -59,9 +70,11 @@ def login(passkey:str,hostname:str):
 
 def prelogin():
     token = load_token()
-    if token:
+    user = load_user()
+    if token and user:
         HTTP.update_headers({"Authorization":"Bearer "+token})
         st.session_state.authenticated = True
         st.session_state.token = token
+        st.session_state.user = user
     else:
         st.session_state.authenticated = False 

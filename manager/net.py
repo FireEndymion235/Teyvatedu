@@ -20,7 +20,10 @@ class _HTTP:
     def json_post(self,url,data):
         try:
             logger.info(f"Posting to {url} with data: {data}")
-            p = post(self.base+url,json=data,headers=self.headers)
+            p = post(self.base+url,json=data,headers=self.headers,allow_redirects=False)
+            if p.status_code == 301:
+                new_url = p.headers['Location']
+                p = post(new_url,json=data,headers=self.headers,allow_redirects=False)
             logger.info(f"Posting to {url} with data: {data} RAW:{p.request.body}")
             logger.info(f"Posting response: {p.text}")
             return p
@@ -30,8 +33,11 @@ class _HTTP:
     def data_post(self,url,data):
         try:
             logger.info(f"Posting to {url} with data: {data}")
-            p = post(self.base+url,data=data,headers=self.headers)
-            logger.info(f"Posting response: {p.text}")
+            p = post(self.base+url,data=data,headers=self.headers,allow_redirects=False)
+            if p.status_code == 301:
+                new_url = p.headers['Location']
+                p = post(new_url,data=data,headers=self.headers,allow_redirects=False)
+                logger.info(f"Posting response: {p.text}")
             return p
         except Exception as e:
             logger.error(f"Error posting to {url} with data: {data}")

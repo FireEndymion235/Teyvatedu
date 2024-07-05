@@ -12,13 +12,14 @@ def main():
         st.session_state.authenticated = False
     if 'token' not in st.session_state:
         st.session_state.token = ''
-
+    if 'user' not in st.session_state:
+        st.session_state.user = ''
     if not st.session_state.authenticated:
         login_container = st.container()
     
         with login_container:
             st.title("TEP 用户登录")
-            hostname=st.text_input("主机名",value="http://localhost:8000/api/v1")
+            hostname=st.text_input("主机名",value=st.session_state.user)
             passkey = st.text_input("密钥")
             if st.button("登录"):
                 login(passkey,hostname)
