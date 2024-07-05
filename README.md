@@ -51,11 +51,12 @@ tr -dc 'A-Z0-9' < /dev/urandom | head -c 64
 replace JWT_SECRET_KEY with the generated key.
 
 local deploy:
+```bash
 uvicorn main:app --host=0.0.0.0 --port=8000 --lifespan=on --env-file=.env --log-config=uvicorn_log.yaml
-
+```
 
 ## Credits
 
 This project includes code from [Editorial by HTML5 UP](html5up.net) by [@ajlkn], used under [CC BY 3.0](html5up.net/license). Changes were made to the original code.
 
-Last modified: 2024-7-1
+Last modified: 2024-7-2
