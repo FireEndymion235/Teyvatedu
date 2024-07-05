@@ -25,7 +25,7 @@ Docker build:
 prechecks:
 ```bash
 cd src
-mkdir -p /usr/tep/static /usr/tep/templates /usr/tep/sqlite3
+mkdir -p /usr/tep/static /usr/tep/templates /usr/tep/sqlite3 /usr/tep/logs
 cp -r ./static/* /usr/tep/static
 cp -r ./templates/* /usr/tep/templates
 cp -r ./sqlite3/* /usr/tep/sqlite3
@@ -54,7 +54,7 @@ tr -dc 'A-Z0-9' < /dev/urandom | head -c 64
 ```
 replace JWT_SECRET_KEY with the generated key.
 
-Deploy:
+local deploy:
 uvicorn main:app --host=0.0.0.0 --port=8000 --lifespan=on --env-file=.env --log-config=uvicorn_log.yaml
 
 

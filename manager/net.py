@@ -53,7 +53,7 @@ class _HTTP:
         return r
     def upload_file(self,url:str,file:bytes,filename:str):
         r = post(self.base+url,files={"file":(filename, file)},headers=self.headers)
-        logger.info(f"Uploading file to {url} with data: {r.text}")
+        logger.info(f"Uploading file to {url} with data: {r.text}, headers={self.headers}")
         return r
     def upload_image_file(self,url,body:bytes,file_ext:str):
         file_type = "image/png"

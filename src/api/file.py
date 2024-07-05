@@ -44,11 +44,11 @@ async def upload_pdf(file:UploadFile):
     await Files.File.create(filename=file.filename,path=f"static/pdfs/{new_filename}",filename_hash=new_filename)
     return {"filename": new_filename}
 
-@file_router.get("/image/{filename}")
+@file_router.get("/get/image/{filename}")
 async def download_image(filename: str):
     return FileResponse(f"static/images/{filename}")
 
-@file_router.get("/pdf/{filename}")
+@file_router.get("/get/pdf/{filename}")
 async def download_pdf(filename: str):
     return FileResponse(f"static/pdfs/{filename}")
 

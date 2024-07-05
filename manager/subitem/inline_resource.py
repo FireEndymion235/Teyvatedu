@@ -17,7 +17,7 @@ def page():
     st.header("Book")
     st.subheader("Get all Logs")
     if st.button("Get all Logs"):
-        all_log = get_all_logs()
+        all_log = get_all_logs().get("logs",[])
         pd_table = pd.DataFrame(all_log,index=[idx for idx in range(1,len(all_log)+1)])
         st.write(pd_table)
 
@@ -43,6 +43,7 @@ def page():
         if st.button("Create PDF"):
             r = HTTP.upload_file("/pdf/upload",file_contents,uploaded_file.name)
             logger.info(r.text)
+            
             if r.status_code == 200:
                 img = r.json()["filename"]
                 logger.info(img)
