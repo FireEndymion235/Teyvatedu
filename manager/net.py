@@ -12,7 +12,7 @@ def generate_boundary(length=16):
     return boundary
 class _HTTP:
     def __init__(self,baseurl=BASEURL):
-        self.headers = {}
+        self.headers = {"user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 Edg/126.0.0.0"}
         self.base = baseurl
     def update_baseurl(self,baseurl):
         logger.info(f"Updating base url to {baseurl}")
@@ -52,7 +52,12 @@ class _HTTP:
         r = delete(self.base+url,headers=self.headers)
         return r
     def upload_file(self,url:str,file:bytes,filename:str):
-        r = post(self.base+url,files={"file":(filename, file)},headers=self.headers)
+
+        r = post(self.base+url,files={"file":(filename, file)},headers=self.headers,allow_redirects=False)
+        logger.info(f"status_code = {r.status_code}")
+        if r.status_code == 301:
+            new_url = r.headers['Location']
+            r = post(new_url,files={"file":(filename, file)},headers=self.headers,allow_redirects=False)
         logger.info(f"Uploading file to {url} with data: {r.text}, headers={self.headers}")
         return r
     def upload_image_file(self,url,body:bytes,file_ext:str):

@@ -4,11 +4,11 @@
 </header>
 <div class="mini-posts">
 <article>
-<a href="#" class="image"><img src="static/images/test.jpg" alt="" /></a>
+<a href="publications.html" class="image"><img src="static/images/test.jpg" alt="" /></a>
 <p>暂无出版物</p>
 </article>
 </div>
 <ul class="actions">
-<li><a href="#" class="button">More</a></li>
+<li><a href="publications.html" class="button">More</a></li>
 </ul>
 </section>

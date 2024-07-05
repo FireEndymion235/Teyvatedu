@@ -14,3 +14,6 @@ loguru==0.7.2
 tortoise-orm==0.20.0
 aiosmtplib==3.0.1
 cryptography==42.0.5
+uvicorn==0.24.0.post1
+pyyaml==6.0.1
+psutil==5.9.6

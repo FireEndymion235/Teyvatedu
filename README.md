@@ -37,10 +37,6 @@ Docker run:
 ```bash
     docker run -d -p 80:80 \
     --name teyvatedu \
-    -e APP_NAME=TEPBackendAPI \
-    -e JWT_SECRET_KEY=randomkey \
-    -e JWT_ALGORITHM=HS256 \
-    -e ES=CC283 \
     -v /usr/tep/static:/app/static \
     -v /usr/tep/templates:/app/templates \
     -v /usr/tep/sqlite3:/app/sqlite3 \

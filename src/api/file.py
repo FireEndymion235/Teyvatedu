@@ -46,11 +46,21 @@ async def upload_pdf(file:UploadFile):
 
 @file_router.get("/get/image/{filename}")
 async def download_image(filename: str):
-    return FileResponse(f"static/images/{filename}")
+    try:
+        resp = FileResponse(f"static/images/{filename}")
+    except Exception as e:
+        logger.error(e)
+        return HTTPException(status_code=404, detail="File not found")
+    return resp
 
 @file_router.get("/get/pdf/{filename}")
 async def download_pdf(filename: str):
-    return FileResponse(f"static/pdfs/{filename}")
+    try:
+        resp = FileResponse(f"static/pdfs/{filename}")
+    except Exception as e:
+        logger.error(e)
+        return HTTPException(status_code=404, detail="File not found")
+    return resp
 
 @file_router.get("/files")
 async def get_all_files():
