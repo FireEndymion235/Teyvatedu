@@ -1,7 +1,7 @@
 
 # Security Policy
 
-> current security policy version: 1.1
+> current security policy version: 1.2
 
 Security is very important for this site.
 
@@ -29,13 +29,21 @@ It's better to discuss privately and try to find a solution first, to limit the 
 
 In order to protect the information security of visitors and related users, any references, external links and external applications in this project should have the most basic security guarantees.
 
-a. For external referenced articles and documents, they should come from authoritative departments or institutions.
+In addition, according to relevant domestic laws, external links need to be reviewed before they can be added to this site. If you want your external links to be added to the site, you need to provide relevant filing materials. For details, please refer to local laws and regulations or consult legal professionals.
+If you do not have the conditions to apply for relevant materials, we will mark your link as unsafe, and use the external link navigation prompt function to remind all users who access external links from this site.
 
-b. For referenced external links, for security reasons, there should be SSL certificates and HTTPS should be enabled. If possible, external links should be required to have certain anti-interference and anti-risk capabilities.
+1. For external referenced articles and documents, they should come from authoritative departments or institutions.
 
-c. For referenced external applications, they should have the most basic security.
+2. For referenced external links, for security reasons, there should be SSL certificates and HTTPS should be enabled. If possible, external links should be required to have certain anti-interference and anti-risk capabilities.
+
+3. For referenced external applications, they should have the most basic security.
+
+
+## 5. Contact us
+
+Email: phil616@163.com
 
 ---
 
 Thanks for your help!
-last modifed: 2024-07-6
+last modifed: 2024-07-14
