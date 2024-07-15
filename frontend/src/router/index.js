@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from '@/components/LoginPage.vue';
 import HomeView from '@/views/HomeView.vue';
-import Dashboard from '@/components/DashboardPage.vue';
-import NotFound from '@/components/NotFound.vue'; // 404页面组件
 
+import Notification from '@/views/NotificationView.vue';
+import Production from '@/views/ProductionView.vue';
+import Publications from '@/views/PublicationView.vue';
+import Aboutus from '@/views/AboutusView.vue';
+import NotFound from '@/components/NotFound.vue'; // 404页面组件
+import SinglePublication from '@/views/SinglePublication.vue'; // 404页面组件
 // 确保引入了所有需要的Vue组件
 
 Vue.use(Router);
@@ -13,22 +16,48 @@ const router = new Router({
   mode: 'history',
   routes: [
     {
+      path:"/test",
+      name:"SinglePublication",
+      component:SinglePublication,
+      props:true
+    },
+    {
       path: '/',
-      name: 'Hello',
+      name: "Root",
+      redirect: '/home',
+    },
+    {
+      path: '/home',
+      name: 'Home',
       component: HomeView,
-      meta: { requiresAuth: false } // 标记该路由需要认证
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login,
-      meta: { requiresAuth: false } // 标记该路由不需要认证
-    },
-    {
-      path: '/dashboard',
+      path: '/notifications',
       name: 'Dashboard',
-      component: Dashboard,
-      meta: { requiresAuth: true } // 标记该路由需要认证
+      component: Notification,
+    },
+    {
+      path: '/publications',
+      name: 'Publication',
+      component: Publications,
+      children:[
+        {
+          path: '/singlepublication', 
+          name: 'SinglePublication', 
+          component: SinglePublication, 
+          props:true
+        },
+      ]
+    },
+    {
+      path: '/productions',
+      name: 'Production',
+      component: Production,
+    },
+    {
+      path: '/aboutus',
+      name: 'Aboutus',
+      component: Aboutus,
     },
     {
       path: '*',
